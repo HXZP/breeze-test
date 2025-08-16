@@ -1,6 +1,11 @@
 #include <zephyr/kernel.h>
-#include <zephyr/drivers/led_strip.h>
 #include <zephyr/device.h>
+
+#include <zephyr/drivers/led_strip.h>
+#include <zephyr/logging/log.h>
+
+//注册日志
+LOG_MODULE_REGISTER(app);
 
 // 获取LED设备
 #define LED_STRIP_NODE DT_NODELABEL(rgb_led)
@@ -24,16 +29,21 @@ int main(void)
         colors[0].r = 0xFF; colors[0].g = 0x00; colors[0].b = 0x00;
         led_strip_update_rgb(led_strip, colors, 1);
         k_sleep(K_MSEC(1000));
+	    printk("red now\r\n");
 
-        // 绿色
+	    // 绿色
         colors[0].r = 0x00; colors[0].g = 0xFF; colors[0].b = 0x00;
         led_strip_update_rgb(led_strip, colors, 1);
         k_sleep(K_MSEC(1000));
+        printk("green now\r\n");
 
         // 蓝色
         colors[0].r = 0x00; colors[0].g = 0x00; colors[0].b = 0xFF;
         led_strip_update_rgb(led_strip, colors, 1);
         k_sleep(K_MSEC(1000));
+	    printk("blue now\r\n");
+
+	    LOG_INF("a loop complicate");
     }
 
     return 0;  // 虽然不会执行到这里，但保持语法完整

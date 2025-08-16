@@ -15,7 +15,10 @@
 			"${workspaceFolder}/../../breeze",
 			"${workspaceFolder}/../../breeze-sdk/zephyr",
 			"${workspaceFolder}/../../breeze-sdk/modules/*/*"
-		]
+		],
+		"files.associations": {
+			"typeinfo": "cpp"
+		}
 	},
 	"tasks": {
 		"version": "2.0.0",
@@ -26,9 +29,10 @@
 				"command": "STM32_Programmer_CLI",
 				"args": [
 					"-c", "port=SWD", "freq=4000",
+					" -hardRst", "",
 					"-e", "all",
-					"-d", "${workspaceFolder}/build/zephyr/zephyr.bin",
-					"0x08000000"
+					"-d", "${workspaceFolder}/build/zephyr/zephyr.bin", "0x08000000",
+					" -rst", ""
 				],
 				"problemMatcher": [],
 				"presentation": {
